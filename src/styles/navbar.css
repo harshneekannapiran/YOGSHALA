@@ -1,0 +1,75 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #7a9e87;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-brand h1 {
+  margin: 0;
+  color: #dad2c7;
+  font-size: 1.5rem;
+  line-height: 1; /* Fix: remove 50px */
+  display: flex;   /* optional, but ensures alignment */
+  align-items: center;
+}
+
+
+.navbar-brand .logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: block;
+}
+
+
+.navbar-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar-links button {
+  padding: 0.5rem 1rem;
+  background: none;
+  border: none;
+  color: #e5e1da;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.navbar-links button:hover {
+  color: #dad2c7;
+}
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.navbar-user span {
+  color: #3e3e3e;
+}
+
+.logout-button {
+  padding: 0.5rem 1rem;
+  background-color: #e5e1da;
+  border: none;
+  border-radius: 5px;
+  color: #3e3e3e;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+  background-color: #dad2c7;
+}

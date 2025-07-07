@@ -1,0 +1,254 @@
+.sequences-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  
+}
+
+.sequences-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.sequences-header h1 {
+  color: #5e7d6a;
+}
+
+.create-sequence-button {
+  padding: 0.75rem 1.5rem;
+  background-color: #7a9e87;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.create-sequence-button:hover {
+  background-color: #5e7d6a;
+}
+
+.sequences-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.sequence-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.sequence-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.sequence-card h3 {
+  color: #5e7d6a;
+  margin-bottom: 1rem;
+}
+
+.sequence-details {
+  display: flex;
+  justify-content: space-between;
+  color: #777;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.pose-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pose-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9rem;
+}
+
+.sequence-builder {
+  background-color: white;
+  border-radius: 8px;
+  padding: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sequence-builder h2 {
+  color: #5e7d6a;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.sequence-builder .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.sequence-builder .form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #3e3e3e;
+  font-weight: 500;
+}
+
+.sequence-builder .form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #e5e1da;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.sequence-builder .form-group input:focus {
+  outline: none;
+  border-color: #7a9e87;
+}
+
+.poses-list {
+  margin-bottom: 2rem;
+}
+
+.poses-list h3 {
+  color: #3e3e3e;
+  margin-bottom: 1rem;
+}
+
+.pose-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  align-items: center;
+}
+
+.pose-row input,
+.pose-row select {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.remove-pose-button {
+  padding: 0.5rem;
+  background-color: #ffebee;
+  color: #c62828;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.remove-pose-button:hover {
+  background-color: #ffcdd2;
+}
+
+.add-pose-button {
+  padding: 0.5rem 1rem;
+  background-color: #e5e1da;
+  color: #5e7d6a;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+.add-pose-button:hover {
+  background-color: #dad2c7;
+}
+
+.builder-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.builder-buttons button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.builder-buttons button:first-child {
+  background-color: #e5e1da;
+  color: #3e3e3e;
+}
+
+.builder-buttons button:first-child:hover {
+  background-color: #dad2c7;
+}
+
+.builder-buttons button:last-child {
+  background-color: #7a9e87;
+  color: white;
+}
+
+.builder-buttons button:last-child:hover {
+  background-color: #5e7d6a;
+}
+.sequence-card {
+  background-color: #fefefe;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+  position: relative;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.sequence-content {
+  cursor: pointer;
+}
+
+.delete-sequence-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #7a9e87;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.delete-sequence-button:hover {
+  background: #5e7d6a;
+}
+.timer-instruction {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #444;
+  font-style: italic;
+}
+
+.pose-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.pose-tag {
+  background-color: #f0f0f0;
+  border-radius: 12px;
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  color: #333;
+  border: 1px solid #ccc;
+}
