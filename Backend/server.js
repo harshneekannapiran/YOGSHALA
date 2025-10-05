@@ -1,9 +1,43 @@
 const express = require('express'), mongoose = require('mongoose'), cors = require('cors');
 require('dotenv').config();
 const app = express();
-app.use(cors());app.use(express.json());
+app.use(cors());
+app.use(express.json());
+
 const User = require('./models/User'), Pose = require('./models/Pose'), Sequence = require('./models/Sequence'), UserProgress = require('./models/UserProgress');
-mongoose.connect(process.env.MONGODB_URI||'mongodb://localhost:27017/yogshala',{useNewUrlParser:true,useUnifiedTopology:true}).then(async()=>{console.log('Connected to MongoDB');const db=mongoose.connection.db;console.log('Database name:',db.databaseName);const collections=await db.listCollections().toArray();console.log('Available collections:',collections.map(c=>c.name));console.log('Current document counts:');console.log('- Users:',await User.countDocuments());console.log('- UserProgress:',await UserProgress.countDocuments());console.log('- Sequences:',await Sequence.countDocuments());}).catch(e=>console.error('MongoDB connection error:',e));
+
+// Improved MongoDB connection with better error handling
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/yogshala', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 30000, // 30 seconds timeout
+  socketTimeoutMS: 45000, // 45 seconds timeout
+}).then(async () => {
+  console.log('Connected to MongoDB');
+  const db = mongoose.connection.db;
+  console.log('Database name:', db.databaseName);
+  
+  // Wait a bit for connection to stabilize
+  setTimeout(async () => {
+    try {
+      const collections = await db.listCollections().toArray();
+      console.log('Available collections:', collections.map(c => c.name));
+      console.log('Current document counts:');
+      console.log('- Users:', await User.countDocuments());
+      console.log('- UserProgress:', await UserProgress.countDocuments());
+      console.log('- Sequences:', await Sequence.countDocuments());
+      
+      // Initialize data after connection is stable
+      await initializePoses();
+      await initializeSequences();
+    } catch (error) {
+      console.error('Error during initialization:', error);
+    }
+  }, 2000);
+}).catch(e => {
+  console.error('MongoDB connection error:', e);
+  // Don't crash the server if MongoDB fails
+});
 const initializePoses=async()=>{if(await Pose.countDocuments()===0){await Pose.insertMany([
 {name:'Mountain Pose',difficulty:'Beginner',benefits:'Improves posture, strengthens thighs and ankles',duration:60,instruction:'Stand tall with feet together'},
 {name:'Downward Dog',difficulty:'Beginner',benefits:'Strengthens arms and legs',duration:90,instruction:'Form an inverted V-shape with your body'},
@@ -18,7 +52,6 @@ const initializeSequences=async()=>{if(await Sequence.countDocuments()===0){awai
 {username:'system',name:'Morning Routine',poses:[{name:'Mountain Pose',duration:60},{name:'Downward Dog',duration:90},{name:'Warrior II',duration:120}],totalDuration:270,isDefault:true},
 {username:'system',name:'Back Pain Relief',poses:[{name:"Child's Pose",duration:90},{name:'Warrior II',duration:120},{name:'Cobra Pose',duration:90}],totalDuration:300,isDefault:true}
 ]);console.log('Default sequences initialized');}};
-initializePoses().then(initializeSequences);
 app.use('/api/sequences',require('./routes/sequenceRoutes'));
 app.use('/api/progress',require('./routes/progressRoutes'));
 app.use('/api/poses',require('./routes/poseRoutes'));
