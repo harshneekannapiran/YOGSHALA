@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
-import Signup from './pages/Signup';
+import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
 import Sequences from './pages/Sequences';
 import Navbar from './components/Navbar';
@@ -29,7 +29,7 @@ function App() {
             element={
               isLoggedIn ? 
               <Navigate to="/dashboard" /> : 
-              <Signup setIsLoggedIn={setIsLoggedIn} setUserName={setUserName} />} 
+              <SignUp setIsLoggedIn={setIsLoggedIn} setUserName={setUserName} />} 
           />
           <Route 
             path="/dashboard" 
